@@ -1,0 +1,726 @@
+/* my approach in styling this web game is to 
+to specify an element's properties in differint screen 
+sizes all in one place which mean's specifying the element's 
+glopal properties first and then specify specific props in each 
+screen in this order :
+ - mobile
+ - tablet
+ - desktop.
+the reason why i chose this approach is that it makes it easier for the 
+developer to find the problem and fix it.*/
+:root {
+    --scissors:hsl(40, 84%, 53%);
+    --scissors-shadow:hsl(39, 89%, 49%);
+
+    --paper:hsl(230, 89%, 65%);
+    --paper-shadow:hsl(230, 89%, 62%);
+
+    --rock:hsl(349, 70%, 56%);
+    --rock-shadow:hsl(349, 71%, 52%);
+
+    --inset-shadow:#dbdbdb;
+    --bg-grad1:hsl(214, 47%, 23%);
+    --bg-grad2:hsl(237, 49%, 15%);
+
+    --outline:hsl(217, 16%, 45%);
+
+    --score-text:hsl(229, 64%, 46%);
+
+}
+
+/* ----------------------- */
+/* -------  RESETS   ----- */
+/* ----------------------- */
+*,::before,::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 200px;
+    background:radial-gradient(var(--bg-grad1),var(--bg-grad2) );
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+/* ----------------------------------------------- */
+/* ----- styling the tringle and the buttons------ */
+/* ----------------------------------------------- */
+.game-wrapper {
+    background-image: url("./images/bg-triangle.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+    aspect-ratio: 1;
+    margin: auto;
+}
+
+@media screen and (max-width:480px){
+    .game-wrapper {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .game-wrapper {
+        width: 45%;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .game-wrapper {
+        width: 30%;
+    }
+}
+
+.paper,.sissors,.rock {
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%; 
+    cursor: pointer;
+}
+
+.game-wrapper .paper,
+.game-wrapper .sissors,
+.game-wrapper .rock {
+    position: absolute;
+}
+
+/*  adjusting the size of the game buttons in every screen */
+@media screen and (max-width:480px){
+    :root {
+        --val:4px; /* to control the width of the inset shadow */
+    }
+    .paper,.sissors,.rock {
+        width: 120px;
+        border-width: 15px;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    :root {
+        --val:6px;
+
+    }
+    .paper,.sissors,.rock {
+        width: 150px;
+        border-width: 18px;
+    }
+}
+
+@media screen and (min-width:768px) {
+    :root {
+        --val:7px;
+    }
+    .paper,.sissors,.rock {
+        width: 180px;
+        border-width: 20px;
+    }
+}
+
+
+.paper {
+    background-image: url("./images/icon-paper.svg");
+    border: 15px solid var(--paper);
+
+    box-shadow:inset  0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--paper-shadow);
+    -webkit-box-shadow:inset 0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--paper-shadow);
+    -moz-box-shadow:inset 0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--paper-shadow);
+}
+
+@media screen and (max-width:480px){
+    .paper {
+        top: -15%;
+        left: -15%;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px){
+    .paper {
+        top: -15%;
+        left: -15%;
+    }
+}
+
+@media screen and (min-width:768px){
+    .paper {
+        top: -10%;
+        left: -10%;
+    }
+}
+
+.sissors {
+    background-image: url("./images/icon-sissors.svg");
+    border: 15px solid var(--scissors);
+
+    box-shadow:inset  0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--scissors-shadow);
+    -webkit-box-shadow:inset 0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--scissors-shadow);
+    -moz-box-shadow:inset 0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--scissors-shadow);
+}
+
+@media screen and (max-width:480px){
+    .sissors {
+        top: -15%;
+        right: -15%;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px){
+    .sissors {
+        top: -15%;
+        right: -15%;
+    }
+}
+
+@media screen and (min-width:768px){
+    .sissors {
+        top: -10%;
+        right: -10%;
+    }
+}
+
+.rock {
+    background-image: url("./images/icon-rock.svg");
+    border: 15px solid var(--rock);
+
+    box-shadow:inset  0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--rock-shadow);
+    -webkit-box-shadow:inset 0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--rock-shadow);
+    -moz-box-shadow:inset 0px var(--val) 0px 0px var(--inset-shadow),
+    0px var(--val) 0px 0px var(--rock-shadow);
+}
+
+@media screen and (max-width:480px){
+    .rock {
+        left: calc(50% - 60px);
+        bottom: -15%;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px){
+    .rock {
+        left: calc(50% - 75px);
+        bottom: -15%;
+    }
+}
+
+@media screen and (min-width:768px){
+    .rock {
+        left: calc(50% - 90px);
+        bottom: -10%;
+    }
+}
+
+/* ------ end of game section -------- */
+
+/* ----- style the header ----------- */
+
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5rem auto;
+    border: 3px solid var(--outline);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    -webkit-border-radius: 0.8rem;
+    -moz-border-radius: 0.8rem;
+    -ms-border-radius: 0.8rem;
+    -o-border-radius: 0.8rem;
+}
+
+@media screen and (max-width:480px){
+    .header-wrapper {
+        width: 80%;
+        padding: 0.8rem;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .header-wrapper {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .header-wrapper {
+        width: 60%;
+    }
+}
+
+.header-wrapper > img {
+    width: 30%;
+}
+
+
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--score-text);
+    background-color: white;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    aspect-ratio: 1;
+}
+
+.score-text {
+    font-weight: 600;
+}
+
+.score {
+    font-weight: 700;
+}
+
+@media screen and (max-width:480px){
+    .score-container {
+        width: 30%;
+    }
+    .score-text {
+        font-size: 0.8rem;
+    }
+    .score {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .score-container {
+        width: 25%;
+    }
+    .score-text {
+        font-size: 0.8rem;
+    }
+    .score {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .score-container {
+        width: 25%;
+    }
+    .score-text {
+        font-size: 1.6rem;
+    }
+    .score {
+        font-size: 3rem;
+    }
+}
+
+/* ------ styling the rules button & the rules section ------- */
+
+.rules-container {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15% 0;
+    position: fixed;
+    z-index: 100;
+}
+
+.rules-btn {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 2px solid var(--outline);
+    color: white;
+    border-radius: .5rem;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+@media screen and (max-width:480px){
+    .rules-container {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    .rules-btn {
+        bottom: calc(10% + 2rem);
+        left: 50%;
+        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .rules-container {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        font-size: 2rem;
+    }
+    .rules-container [data-name="rules-img"]{
+        width: 70%;
+    }
+    .rules-container [data-name="rules-close"]{
+        width: 3rem;
+    }
+    .rules-btn {
+        bottom: -10%;
+        right: calc(-90% + 3rem);
+    }
+}
+
+@media screen and (min-width:768px) {
+    .rules-container {
+        width: 30%;
+        top: 50%;
+        left: 50%;
+        font-size: 2rem;
+        padding: 2rem 2rem;
+        border-radius: 1rem;
+        transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+        aspect-ratio: 1;
+        -webkit-border-radius: 1rem;
+        -moz-border-radius: 1rem;
+        -ms-border-radius: 1rem;
+        -o-border-radius: 1rem;
+    }
+    .rules-container h3 {
+        position: relative;
+        top: -1rem;
+        left: calc(-40% + 1rem);
+    }
+    .rules-container [data-name="rules-img"]{
+        width: calc(100% - 4rem);
+    }
+    .rules-container [data-name="rules-close"]{
+        width: 1.5rem;
+        position: relative;
+        top: calc(-100% + 1rem);
+        right: calc(-50% + 0rem);
+        cursor: pointer;
+    }
+    .rules-btn {
+        bottom: 3rem;
+        right: calc(-85%);
+    }
+    .overlay {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .5);
+        position: fixed;
+        top: 0;
+        z-index: 99;
+    }
+}
+
+/* ----- styling the selection screen ------- */
+
+.selection-container {
+    display: none;
+    margin: 0 auto;
+    
+}
+
+.loading-dot-house {
+    background-color: rgba(0, 0, 0, .5);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    z-index: -1;
+    margin: auto;
+}
+
+@media screen and (max-width:480px){
+    .loading-dot-house {
+        width: 100px;
+        grid-row: 1/2;
+        grid-column: 3/4;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .loading-dot-house {
+        width: 120px;
+        grid-row: 3/4;
+        grid-column: 3/4;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .loading-dot-house {
+        width: 150px;
+        grid-row: 3/4;
+        grid-column: 3/4;
+    }
+}
+
+/* initially hide the selection container and the game result */
+/* .selection-container, */
+.game-result,
+.rules-container,
+.overlay {
+    display: none;
+}
+@media screen and (max-width:480px){
+    .selection-container {
+        width: 80%;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows:auto auto auto auto;
+        grid-row-gap: 1rem;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .selection-container {
+        width: 80%;
+        grid-template-columns: auto auto auto;
+        grid-template-rows:auto auto auto;
+        grid-row-gap: 1rem;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .selection-container {
+        width: 50%;
+        grid-template-columns: auto auto auto;
+        grid-template-rows:auto auto auto;
+        grid-row-gap: 1rem;
+    }
+}
+.loading-dot-player {
+    width: 1rem;
+    aspect-ratio: 1;
+    background-color: #fff;
+}
+.player-selection,.loading-dot-player {
+    margin: auto;
+    display:grid;
+}
+
+.player-selection-text {
+    margin: auto;
+    color: white;
+    grid-column: 1 span;
+}
+
+@media screen and (max-width:480px){
+    .player-selection,.loading-dot-player {
+        grid-row: 1 span;
+        margin: auto;
+    }
+    
+    .player-selection-text {
+        grid-row: 3/4;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .player-selection,.loading-dot-player {
+        grid-row: 3/4;
+    }
+    
+    .player-selection-text {
+        grid-row: 1 span;
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .player-selection,.loading-dot-player {
+        grid-row: 3/4;
+    }
+    
+    .player-selection-text {
+        grid-row: 1/2;
+        font-size: 1.4rem;
+    }
+}
+
+.house-selection {
+    margin: auto;
+}
+
+.house-selection-text {
+    margin: auto;
+    color: white;
+    grid-column: 3/4;
+}
+
+
+@media screen and (max-width:480px){
+    .house-selection {
+        grid-row: 1/2;
+        grid-column: 3/4;
+    }
+    
+    .house-selection-text {
+        grid-row: 3/4;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .house-selection {
+        grid-row: 3/4;
+        grid-column: 3/4;
+    }
+    
+    .house-selection-text {
+        grid-row: 1/2;
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .house-selection {
+        grid-row: 3/4;
+        grid-column: 3/4;
+    }
+    
+    .house-selection-text {
+        grid-row: 1/2;
+        font-size: 1.4rem;
+    }
+}
+
+.game-result {
+    width: max-content;
+    grid-row: 3/4;
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+}
+
+.game-result-text {
+    color: white;
+    font-weight: 700;
+}
+
+.replay {
+    background:#fff;
+    padding:0.5rem 2.6rem;
+    border: none;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.replay:hover {
+    color: var(--rock);
+}
+
+@media screen and (max-width:480px){
+    .game-result {
+        grid-row: 4/5;
+        grid-column: 1/4;
+        margin: auto;
+    }
+    .game-result-text {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    .game-result {
+        grid-row: 3/4;
+        grid-column: 2/3;
+        margin: auto;
+    }
+    .game-result-text {
+        font-size: 2rem;
+    }
+    
+}
+
+@media screen and (min-width:768px) {
+    .game-result {
+        grid-row: 3/4;
+        grid-column: 2/3;
+        margin: auto;
+    }
+    .game-result-text {
+        font-size: 2rem;
+    }
+
+}
+
+/* to give a space in the bottom of the page */
+
+@media screen and (max-width:480px){
+    footer {
+        margin-top: 70%;
+    }  
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+    footer {
+        margin-top: 30%;
+    }
+    
+}
+
+@media screen and (min-width:768px) {
+    footer {
+        margin-top: 15%;
+    }
+
+}
+
+
+
+
+
+@media screen and (max-width:480px){
+
+}
+
+@media screen and (min-width:481px) and (max-width:767px) {
+
+}
+
+@media screen and (min-width:768px) {
+
+}

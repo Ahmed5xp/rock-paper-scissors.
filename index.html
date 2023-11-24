@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">  
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  <title>game </title>
+  <title>rock</title>
+  <title>paper</title>
+  <title>Scissors</title>
+</head>
+<body>
+</body>
+<div class="background"></div>
+<!-------------------------------->
+<!------- Header section --------->
+<!-------------------------------->
+
+    <header class="header-wrapper">
+        <img src="./images/logo.svg" alt="logo">
+        <div class="score-container">
+            <span class="score-text">SCORE</span>
+            <div class="score">13</div> 
+        </div>
+    </header>
+
+<!-------------------------------->
+<!------- Game Buttons ----------->
+<!-------------------------------->
+
+<article class="game-wrapper">
+    <button class="paper"></button>
+    <button class="sissors"></button>
+    <button class="rock"></button>
+</article>
+
+<!-------------------------------->
+<!------- selection section ------>
+<!-------------------------------->
+
+<article class="selection-container">
+    <div class="player-selection">
+        <button class="the-player"></button>
+    </div>
+    <div class="house-selection">
+        <button class="the-computer"></button>        
+    </div>
+    <div class="loading-dot-house"></div>
+    <!-- the the game result that will be showen after the house makes a selection -->
+    <div class="game-result">
+        <h1 class="game-result-text">you lose</h1>
+        <button class="replay" onclick="renderGameScreen()">play again</button>
+    </div>
+
+    <div class="player-selection-text">
+        you picked
+    </div>
+    <div class="house-selection-text">
+        the house picked
+    </div>
+</article>
+
+<footer></footer>
+
+<!-------------------------------->
+<!------- rules Button ----------->
+<!-------------------------------->
+
+<div class="rules-container">
+    <h3>rules</h3>
+    <img src="./images/image-rules.svg" alt="rules" data-name="rules-img">
+    <img src="./images/icon-close.svg" alt="close" data-name="rules-close" onclick="hideRules()">
+</div>
+<div class="overlay"></div>
+<article>
+  <button class="rules-btn" onclick="displayRules()">RULES</button>
+</article>
+
+<script type="text/javascript" src="script.js"></script>
+</html>
